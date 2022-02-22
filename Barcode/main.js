@@ -1,12 +1,19 @@
+
+
+
+
 if (!('BarcodeDetector' in window)) { 
     alert('Barcode Error Browser not Compatible')
 }
+
 
 var videofeed = document.getElementById('video')
 
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
-  navigator.mediaDevices.getUserMedia({video:true, audio:false, facingMode:'user'})
+  navigator.mediaDevices.getUserMedia({video:{facingMode:{
+    exact: 'environment'
+  }}, audio:false})
   .then(function(stream){ 
     console.log(navigator.mediaDevices)
       videofeed.srcObject = stream});
