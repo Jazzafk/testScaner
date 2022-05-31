@@ -1,11 +1,7 @@
 
-
-
-
 if (!('BarcodeDetector' in window)) { 
     alert('Barcode Error Browser not Compatible')
 }
-
 
 var videofeed = document.getElementById('video')
 
