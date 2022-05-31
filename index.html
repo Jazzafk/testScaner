@@ -8,10 +8,18 @@
     <link href='main.css' rel="stylesheet">
 </head>
 <body>
+  <audio id="barcodeBeep">
+    <source src='beep.mp3' type="audio/mp3">
+  </audio> 
 
   <div id="ele"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js" integrity="sha512-bCsBoYoW6zE0aja5xcIyoCDPfT27+cGr7AOCqelttLVRGay6EKGQbR6wm6SUcUGOMGXJpj+jrIpMS6i80+kZPw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
+
+
+var codes = []
+
+
       var input = {
 name: "Live",
 type: "LiveStream",
@@ -21,23 +29,22 @@ constraints: {
   facingMode: "environment",
   deviceId: "7832475934759384534"
 },
-area: { // defines rectangle of the detection/localization area
-  top: "0%",    // top offset
-  right: "0%",  // right offset
-  left: "0%",   // left offset
-  bottom: "0%"  // bottom offset
+area: { 
+  top: "0%",   
+  right: "0%", 
+  left: "0%",   
+  bottom: "0%" 
 },
-singleChannel: false // true: only the red color-channel is read
+singleChannel: false 
 }
-
       Quagga.init({
   inputStream : {
     name : "Live",
     type : "LiveStream",
-    target: document.querySelector('#ele')    // Or '#yourElement' (optional)
+    target: document.querySelector('#ele')
   },
   decoder : {
-    readers : ["code_128_reader"]
+    readers : ["upc_reader",]
   }
 }, function(err) {
     if (err) {
@@ -46,25 +53,26 @@ singleChannel: false // true: only the red color-channel is read
     }
     console.log("Initialization finished. Ready to start");
     Quagga.start();
-    Quagga.onProcessed(function(data){
-        //console.log(data)
+    Quagga.onDetected(function(data){
+        console.log(data.codeResult.code)
+        playBeep()
     })
 });
 
+var audioSorce = document.getElementById("barcodeBeep")
+function playBeep(){
+audioSorce.play()
+}
 
   </script>
 
-<audio id="barcodeBeep">
-    <source src='beep.mp3' type="audio/mp3">
-  </audio>
-<!--
-   <div id="scan"></div>
-    <video id="video" width="800" height="700" autoplay></video>
-       <div id="scan"></div> -->
 
 
 
-    <script src = "main.js"></script>
+
+
+
+
     
     
 
