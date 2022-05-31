@@ -30,7 +30,6 @@ area: { // defines rectangle of the detection/localization area
 singleChannel: false // true: only the red color-channel is read
 }
 
-
       Quagga.init({
   inputStream : {
     name : "Live",
@@ -48,17 +47,17 @@ singleChannel: false // true: only the red color-channel is read
     console.log("Initialization finished. Ready to start");
     Quagga.start();
     Quagga.onProcessed(function(data){
-        console.log(data)
+        //console.log(data)
     })
 });
 
 
   </script>
 
-  <!-- <audio id="barcodeBeep">
+<audio id="barcodeBeep">
     <source src='beep.mp3' type="audio/mp3">
   </audio>
-
+<!--
    <div id="scan"></div>
     <video id="video" width="800" height="700" autoplay></video>
        <div id="scan"></div> -->
