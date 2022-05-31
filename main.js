@@ -26,6 +26,7 @@ function render() {
             console.log(list)
             console.log(barcode.rawValue);
             playBeep()
+            alert('scaned')
 
         });
       })
