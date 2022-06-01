@@ -18,6 +18,7 @@
 
 
 var codes = []
+cart = []
 
 var input = {
 name: "Live",
@@ -55,27 +56,26 @@ function (err){
     }
 
     console.log("Initialization finished. Ready to start");
-  //here
-});
-
-
-
-function scan(){
-
-  Quagga.start();
+    Quagga.start();
     Quagga.onDetected(function(data){
     
 var pos = codes.indexOf(data.codeResult.code)
 // console.log(pos)
+var name = (data.codeResult.code)
 
-if (pos== -1){
   codes.push(data.codeResult.code)
-        playBeep() 
-        console.log(data.codeResult.code)
-}
+        playBeep()
+
+var quan = prompt('Enter a quantity for item: ' + name)
+cart.push({code: name, price: '$$$', quantity: quan})
+console.log(cart)
 
     })
-}
+});
+
+
+ 
+
 
 
 var audioSorce = document.getElementById("barcodeBeep")
@@ -85,9 +85,7 @@ audioSorce.play()
 
 
 
-setInterval(function() {
-  scan();
-}, 2000);
+
 
   </script>
 
