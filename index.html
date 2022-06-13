@@ -63,7 +63,7 @@ var pos = codes.indexOf(data.codeResult.code)
 // console.log(pos)
 var name = (data.codeResult.code)
 
-  codes.push(data.codeResult.code)
+codes.push(data.codeResult.code)
         playBeep()
 
 var quan = prompt('Enter a quantity for item: ' + name)
@@ -72,11 +72,6 @@ console.log(cart)
 
     })
 });
-
-
- 
-
-
 
 var audioSorce = document.getElementById("barcodeBeep")
 function playBeep(){
